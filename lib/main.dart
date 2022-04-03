@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(     
       themeMode: ThemeMode.light,
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.blue,
         fontFamily: GoogleFonts.lato().fontFamily,
         primaryTextTheme: GoogleFonts.latoTextTheme()
       ),
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         ),
-        initialRoute: "/login",
+        initialRoute: MyRoutes.homeRoute,
         routes: {
           "/" : ((context) => LoginPage()), //either this or add home: HomePage(), b/w 13 & 14 
           MyRoutes.homeRoute : ((context) => HomePage()),
