@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/drawer.dart';
 
+//* Day 11 we learned about context,contraints
 class HomePage extends StatelessWidget {
   final int days = 30;
   final String name = "Codepur";
@@ -15,7 +16,7 @@ class HomePage extends StatelessWidget {
       ), 
       body: Center(
         child: Container(
-          child: Text("Welcome to $days days of flutter by $name"),
+          child: Text(context.runtimeType.toString()),
         ),
       ),
       drawer: MyDrawer(),
