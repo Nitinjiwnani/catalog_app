@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:core';
 
 class CatalogModel {
-  static List<Item> items = list.empty();
+  static List<Item> items = List.empty();
 
   static get list => null;
 }
