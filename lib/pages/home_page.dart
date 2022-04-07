@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
@@ -51,9 +52,7 @@ class _HomePageState extends State<HomePage> {
                 if (CatalogModel.items.isNotEmpty)
                   CatalogList().expand()
                 else
-                  Center(
-                    child: CircularProgressIndicator(),
-                  )
+                    CircularProgressIndicator().centered().expand(),
               ],
             ),
           ),
