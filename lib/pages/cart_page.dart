@@ -29,17 +29,22 @@ class _CartTotal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _cart = CartModel();
+    final CartModel _cart = (VxState.store as MyStore).cart;
     return SizedBox(
         height: 200,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            "\$${_cart.totalPrice}"
-                .text
-                .xl5
-                .color(context.theme.accentColor)
-                .make(),
+            VxBuilder(
+              mutations: {RemoveMutation},
+              builder: (context, _) {
+                return "\$${_cart.totalPrice}"
+                    .text
+                    .xl5
+                    .color(context.theme.accentColor)
+                    .make();
+              },
+            ),
             30.widthBox,
             ElevatedButton(
                     onPressed: () {
