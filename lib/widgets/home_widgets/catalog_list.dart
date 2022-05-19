@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_catalog/models/catalog.dart';
 import 'package:flutter_catalog/pages/home_detail_page.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import 'add_to_cart.dart';
 import 'catalog_image.dart';
-
 class CatalogList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return !context.isMobile
+     return !context.isMobile
         ? GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, crossAxisSpacing: 20.0),
@@ -49,7 +47,6 @@ class CatalogList extends StatelessWidget {
 
 class CatalogItem extends StatelessWidget {
   final Item catalog;
-
   const CatalogItem({Key? key, required this.catalog})
       : assert(catalog != null),
         super(key: key);
@@ -91,6 +88,6 @@ class CatalogItem extends StatelessWidget {
           : Column(
               children: children2,
             ),
-    ).color(context.cardColor).rounded.square(150).make().py16();
+            ).color(context.cardColor).rounded.square(150).make().py16();
   }
 }
