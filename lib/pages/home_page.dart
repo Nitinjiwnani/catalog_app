@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,16 +6,12 @@ import 'package:flutter_catalog/models/cart.dart';
 import 'dart:convert';
 import 'package:flutter_catalog/models/catalog.dart';
 import 'package:flutter_catalog/utils/routes.dart';
-import 'package:flutter_catalog/widgets/themes.dart';
+import 'package:flutter_catalog/widgets/home_widgets/catalog_header.dart';
+import 'package:flutter_catalog/widgets/home_widgets/catalog_list.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import '../widgets/home_widgets/catalog_header.dart';
-import '../widgets/home_widgets/catalog_list.dart';
 import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
-  // key hatai
-
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -36,9 +30,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   loadData() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 2));
     final catalogJson =
-    await rootBundle.loadString("assets/files/catalog.json");
+        await rootBundle.loadString("assets/files/catalog.json");
 
     // final response = await http.get(Uri.parse(url));
     // final catalogJson = response.body;
@@ -57,7 +51,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: context.canvasColor,
         floatingActionButton: VxBuilder(
           mutations: {AddMutation, RemoveMutation},
-          builder: (context, store, status) => FloatingActionButton(
+          builder: (ctx, _,__) => FloatingActionButton(
             onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
             backgroundColor: context.theme.buttonColor,
             child: Icon(
@@ -65,11 +59,13 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
             ),
           ).badge(
-              color: Vx.red500,
-              size: 20,
+              color: Vx.gray200,
+              size: 22,
               count: _cart.items.length,
-              textStyle:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+              textStyle: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              )),
         ),
         body: SafeArea(
           child: Container(
@@ -78,7 +74,7 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CatalogHeader(),
-                if (CatalogModel.items.isNotEmpty)
+                if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
                   CatalogList().py16().expand()
                 else
                   CircularProgressIndicator().centered().expand(),
@@ -86,23 +82,5 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ));
-  }
-}
-
-class CatalogImage extends StatelessWidget {
-  final String image;
-
-  const CatalogImage({Key? key, required this.image}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Image.network(image)
-        .box
-        .rounded
-        .p8
-        .color(MyTheme.creamColor)
-        .make()
-        .p16()
-        .w40(context);
   }
 }
